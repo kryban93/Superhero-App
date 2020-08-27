@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #3c444c;
+
+  &__logo {
+    height: 55px;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

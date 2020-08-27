@@ -1,0 +1,15 @@
+.card {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  width: 280px;
+  color: white;
+
+  &__name {
+    padding: 5px;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+}
