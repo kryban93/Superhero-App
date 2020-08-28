@@ -43,7 +43,7 @@ const RandomDeck = () => {
     <section className='container'>
       {!isLoading &&
         randomHeroesList.map(({ name, powerstats, imgUrl, id }) => (
-          <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} />
+          <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
         ))}
       {isLoading && <Loader />}
     </section>
