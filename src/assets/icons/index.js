@@ -8,3 +8,4 @@ export const star_white = require('./star_white.svg');
 export const star_dark = require('./star_dark.svg');
 export const file_white = require('./file_white.svg');
 export const file_dark = require('./file_dark.svg');
+export const close_dark = require('./close.svg');

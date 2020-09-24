@@ -31,7 +31,7 @@ const SearchView = () => {
     <section className='container'>
       {!isLoading &&
         searchList.map(({ powerstats, name, image, id }) => (
-          <HeroCard powerstats={powerstats} name={name} imgUrl={image.url} key={id} />
+          <HeroCard powerstats={powerstats} name={name} imgUrl={image.url} key={id} id={id} />
         ))}
       {isLoading && <Loader />}
     </section>

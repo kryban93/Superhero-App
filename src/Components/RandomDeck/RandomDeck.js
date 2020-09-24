@@ -20,7 +20,7 @@ const randomizeHeroes = () => {
 
 const RandomDeck = () => {
   const [randomHeroesList, setRandomHeroesList] = useState([]);
-  const [isLoading, setLoadingState] = useState([true]);
+  const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
     setLoadingState(true);
@@ -39,12 +39,14 @@ const RandomDeck = () => {
     setRandomHeroesList(heroes);
     setLoadingState(false);
   };
+
   return (
     <section className='container'>
       {!isLoading &&
         randomHeroesList.map(({ name, powerstats, imgUrl, id }) => (
           <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
         ))}
+
       {isLoading && <Loader />}
     </section>
   );

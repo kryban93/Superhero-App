@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/.history
 
 # testing
 /coverage
@@ -12,7 +13,7 @@
 /build
 
 # misc
-.history
+
 .DS_Store
 .env.local
 .env.development.local
