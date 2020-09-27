@@ -11,7 +11,7 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
     setModalState(true);
   };
 
-  const hideModal = () => {
+  const hideModal = (e) => {
     setModalState(false);
   };
 
