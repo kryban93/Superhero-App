@@ -35,7 +35,6 @@ const RandomDeck = () => {
       const hero = await getBasicHeroInfoById(heroId);
       heroes.push(hero);
     }
-    console.log(heroes);
     setRandomHeroesList(heroes);
     setLoadingState(false);
   };

@@ -20,30 +20,31 @@ const Nav = () => {
           }}
           value={searchInputValue}
           name='search'
+          aria-label='search input'
         />
         <Link style={{ textDecoration: 'none' }} to={`/search/${searchInputValue}`}>
           <button className='nav__search__button'>
             <span>search</span>
-            <img src={icons.search_white} alt='search icon' />
+            <img src={icons.search_dark} alt='search icon' />
           </button>
         </Link>
       </div>
       <div className='nav__menu'>
         <NavLink activeClassName='nav__menu__item--active' style={{ textDecoration: 'none' }} exact to='/'>
           <div className='nav__menu__item'>
-            <img src={icons.home_white} alt='icon' className='nav__menu__item__icon' />
+            <img src={icons.home_dark} alt='icon' className='nav__menu__item__icon' />
             <p className='nav__menu__item__text'>home</p>
           </div>
         </NavLink>
         <NavLink activeClassName='nav__menu__item--active' style={{ textDecoration: 'none' }} to='/favourite'>
           <div className='nav__menu__item'>
-            <img src={icons.star_white} alt='icon' className='nav__menu__item__icon' />
+            <img src={icons.star_dark} alt='icon' className='nav__menu__item__icon' />
             <p className='nav__menu__item__text'>favourite</p>
           </div>
         </NavLink>
         <NavLink activeClassName='nav__menu__item--active' style={{ textDecoration: 'none' }} to='/compare'>
           <div className='nav__menu__item'>
-            <img src={icons.file_white} alt='icon' className='nav__menu__item__icon' />
+            <img src={icons.file_dark} alt='icon' className='nav__menu__item__icon' />
             <p className='nav__menu__item__text'>compare</p>
           </div>
         </NavLink>
