@@ -28,13 +28,11 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
   return (
     <>
       <div className='card' onClick={() => showModal()}>
-        <h2 className='card__name'>{name} </h2>
         <button className='card__button--favourite' onClick={addToFavourite}>
           <img src={star_dark} alt='add to favourite button' />
         </button>
-
-        <img className='card__image' src={imgUrl} alt={name} width='200px' />
-
+        <h2 className='card__name'>{name} </h2>
+        <img className='card__image' src={imgUrl} alt={name} />
         <div className='card__stats'>
           <div className='card__stats__item'>
             <span className='card__stats__item__description'>combat</span>

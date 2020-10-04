@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   height: 450px;
-  width: 320px;
+  width: 310px;
   background-color: $tertiary;
   color: $fontColor;
   border-radius: 5px;
@@ -19,21 +19,24 @@
   }
 
   &__name {
-    padding: 10px;
-    font-size: $fontXl;
+    font-size: $fontL;
     font-weight: $bold;
+    padding-top: 15px;
   }
 
   &__button--favourite {
     position: absolute;
-    top: 5%;
+    top: 3%;
     right: 3%;
     background: none;
     border: none;
   }
 
   &__image {
-    height: 270px;
+    height: 280px;
+    width: 220px;
+    border-radius: 5px;
+    margin: 10px;
   }
 
   &__stats {
@@ -42,7 +45,7 @@
     text-align: center;
 
     &__item {
-      margin: 15px;
+      margin: 10px;
 
       &__description {
         font-weight: $bold;

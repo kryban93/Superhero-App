@@ -1,47 +1,46 @@
 @import '../../variables.scss';
 
 .nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  width: 1200px;
-  background-color: $secondary;
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    background-color: $secondary;
+  }
 
   &__logo {
-    height: 70px;
+    height: 80px;
   }
 
   &__search {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     &__input {
       height: 30px;
       width: 300px;
-      border-radius: 5px;
       border: none;
-      margin: 20px;
+      margin-right: 20px;
       padding: 5px;
       font-size: $fontM;
-      color: $fontColor;
-      background-color: $primary;
+      color: $tertiary;
+      background: none;
+      border-bottom: 1px solid $active;
     }
 
     &__button {
       display: flex;
       align-items: center;
       background: rgba(129, 134, 140, 0.25);
-      //background: linear-gradient(90deg, #f27a54 0%, #a154f2 100%);
       border-radius: 5px;
-      padding: 0px 10px;
+      padding: 5px 10px;
       border: none;
-
-      & > span {
-        color: $fontColor;
-        font-size: 18px;
-        padding: 5px 5px;
-      }
+      color: $tertiary;
+      font-size: $fontS;
     }
   }
 
@@ -51,15 +50,15 @@
     justify-content: space-between;
 
     &__item {
-      padding: 12px;
-      color: $fontColor;
-      margin: 0;
+      color: $tertiary;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 15px;
 
       &__text {
         text-decoration: none;
+        font-size: $fontXxs;
       }
 
       &__icon {
@@ -67,7 +66,8 @@
       }
 
       &--active {
-        background-color: $active;
+        background-color: $secondary;
+        border-radius: 5px;
       }
     }
   }

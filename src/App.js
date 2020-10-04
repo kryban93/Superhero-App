@@ -5,6 +5,7 @@ import RandomDeck from './Components/RandomDeck/RandomDeck';
 import SearchView from './Components/SearchView/SearchView';
 import FavouriteHeroes from './Components/FavouriteHeroes/FavouriteHeroes';
 import CompareHeroes from './Components/CompareHeroes/CompareHeroes';
+import Footer from './Components/Footer/Footer';
 import './App.scss';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           </Switch>
         </main>
       </Router>
+      <Footer />
     </>
   );
 }
