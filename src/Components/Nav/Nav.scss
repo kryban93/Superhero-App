@@ -1,14 +1,14 @@
 @import '../../variables.scss';
 
 .nav {
-  position: relative;
+  background-color: $secondary;
 
   &__wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    background-color: $secondary;
   }
 
   &__logo {
@@ -17,6 +17,7 @@
 
   &__search {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 
@@ -26,10 +27,10 @@
       border: none;
       margin-right: 20px;
       padding: 5px;
-      font-size: $fontM;
+      font-size: $fontXs;
       color: $tertiary;
       background: none;
-      border-bottom: 1px solid $active;
+      border-bottom: 1px solid $additional;
     }
 
     &__button {
@@ -37,17 +38,35 @@
       align-items: center;
       background: rgba(129, 134, 140, 0.25);
       border-radius: 5px;
+      margin: 10px;
       padding: 5px 10px;
       border: none;
       color: $tertiary;
-      font-size: $fontS;
+      font-size: $fontXs;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        background-color: $active;
+      }
     }
   }
 
   &__menu {
+    position: fixed;
+    right: -100px;
+    top: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    height: 100%;
+    background-color: $secondary;
+    z-index: 3;
+    transition: all 0.3s ease-out;
+
+    &--open {
+      right: 0;
+    }
 
     &__item {
       color: $tertiary;
@@ -55,6 +74,7 @@
       flex-direction: column;
       align-items: center;
       margin: 15px;
+      transition: all 0.2s ease-in;
 
       &__text {
         text-decoration: none;
@@ -66,8 +86,53 @@
       }
 
       &--active {
-        background-color: $secondary;
+        background-color: $active;
         border-radius: 5px;
+      }
+    }
+
+    &__btn {
+      padding: 15px;
+      background-color: $additional;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+
+      &--open {
+        position: fixed;
+        top: 3%;
+        right: 3%;
+      }
+
+      &--close {
+        background-color: $active;
+      }
+
+      &__img {
+        height: 25px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    &__wrapper {
+      flex-direction: row;
+    }
+
+    &__search {
+      flex-direction: row;
+    }
+
+    &__menu {
+      position: initial;
+      flex-direction: row;
+
+      &__btn {
+        &--close {
+          display: none;
+        }
       }
     }
   }

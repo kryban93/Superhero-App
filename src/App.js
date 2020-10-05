@@ -30,6 +30,7 @@ function App() {
           </Switch>
         </main>
       </Router>
+
       <Footer />
     </>
   );

@@ -39,14 +39,29 @@ const RandomDeck = () => {
     setLoadingState(false);
   };
 
+  const handleClick = () => {
+    setRandomHeroesList([]);
+    setLoadingState(true);
+    fetchAndRenderRandomHeroes();
+  };
+
   return (
-    <section className='container'>
-      {!isLoading &&
-        randomHeroesList.map(({ name, powerstats, imgUrl, id }) => (
-          <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
-        ))}
+    <section className='random'>
+      <header className='random__header'>
+        <h1 className='random__header__title'>Your random deck</h1>
+        <button className='random__header__btn' onClick={handleClick}>
+          draw new deck
+        </button>
+      </header>
 
       {isLoading && <Loader />}
+
+      <div className='random__content'>
+        {!isLoading &&
+          randomHeroesList.map(({ name, powerstats, imgUrl, id }) => (
+            <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
+          ))}
+      </div>
     </section>
   );
 };
