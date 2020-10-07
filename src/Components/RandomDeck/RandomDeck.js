@@ -25,6 +25,10 @@ const RandomDeck = () => {
   useEffect(() => {
     setLoadingState(true);
     fetchAndRenderRandomHeroes();
+
+    return () => {
+      setRandomHeroesList([]);
+    };
   }, []);
 
   const fetchAndRenderRandomHeroes = async () => {
@@ -35,6 +39,7 @@ const RandomDeck = () => {
       const hero = await getBasicHeroInfoById(heroId);
       heroes.push(hero);
     }
+
     setRandomHeroesList(heroes);
     setLoadingState(false);
   };
@@ -47,12 +52,12 @@ const RandomDeck = () => {
 
   return (
     <section className='random'>
-      <header className='random__header'>
+      <div className='random__header'>
         <h1 className='random__header__title'>Your random deck</h1>
         <button className='random__header__btn' onClick={handleClick}>
           draw new deck
         </button>
-      </header>
+      </div>
 
       {isLoading && <Loader />}
 

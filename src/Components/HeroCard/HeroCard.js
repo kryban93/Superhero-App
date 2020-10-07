@@ -6,9 +6,7 @@ import { star_dark } from '../../assets/icons/index';
 const HeroCard = ({ powerstats, name, imgUrl, id }) => {
   const [isModalActive, setModalState] = useState(false);
   const [favouriteArray, setFavouriteArray] = useState([]);
-  useEffect(() => {
-    console.log(id);
-  }, [id]);
+  useEffect(() => {}, [id]);
 
   const showModal = (e) => {
     setModalState(true);
@@ -21,7 +19,7 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
 
   const addToFavourite = (e) => {
     e.stopPropagation();
-    console.log('clicked');
+
     setFavouriteArray([...favouriteArray, id]);
   };
 

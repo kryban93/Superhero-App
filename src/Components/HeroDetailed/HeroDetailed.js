@@ -9,7 +9,6 @@ const HeroDetailed = ({ id, hideModal, addToFavourite }) => {
   const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
-    console.log(id);
     setLoadingState(true);
     getDetailedInfoById(id).then((searchResults) => {
       const { data } = searchResults;
@@ -18,7 +17,7 @@ const HeroDetailed = ({ id, hideModal, addToFavourite }) => {
       }
 
       const results = data;
-      console.log(results);
+
       setDetailedHeroInfo(results);
       setLoadingState(false);
     });

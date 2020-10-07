@@ -1,34 +1,59 @@
 @import '../../variables.scss';
 
 .item {
-  display: grid;
-  width: 400px;
-  grid-template-columns: 1fr 3fr 1fr;
-  align-items: center;
-  margin: 10px;
-  border-bottom: 1px solid $active;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    background-color: #2f4a6b;
 
-  &__image {
-    height: 100px;
-    margin: 5px;
-  }
-
-  &__text {
-    font-size: $fontM;
-  }
-  &__button {
-    margin: 5px;
-    padding: 5px;
-    font-size: $fontM;
-    border: none;
-    border-radius: 5px;
-
-    &--add {
-      background-color: #218f0b;
+    &__image {
+      height: 100px;
+      margin: 5px;
     }
 
-    &--delete {
-      background-color: #802121;
+    &__text {
+      font-size: $fontS;
+      color: $tertiary;
+      font-weight: $bold;
+
+      &--description {
+        font-weight: $light;
+        font-size: $fontXs;
+      }
+    }
+    &__button {
+      margin: 10px;
+      padding: 5px;
+      font-size: $fontM;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+
+      &--add {
+        background-color: #264b1f;
+        color: #4bf02a;
+      }
+
+      &--delete {
+        background-color: #570e0e;
+        color: #da6464;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    &__content {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
     }
   }
 }

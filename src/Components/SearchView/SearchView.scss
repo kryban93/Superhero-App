@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+
+.search {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  color: $tertiary;
+
+  &__title {
+    padding: 30px;
+    font-size: $fontXl;
+    text-align: center;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__wrong {
+    text-align: center;
+    width: 100%;
+
+    &__title {
+      padding: 20px;
+      font-size: $fontXl;
+      color: $tertiary;
+    }
+
+    &__image {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search {
+    &__content {
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+  }
+}

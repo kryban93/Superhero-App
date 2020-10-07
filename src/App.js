@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <Nav />
-        <main>
+        <main className='main'>
           <Switch>
             <Route exact path='/'>
               <RandomDeck />

@@ -18,14 +18,12 @@ const Nav = () => {
   const showMenu = () => {
     setShowMenuState(true);
     const wrapper = navMenuRef.current;
-    console.log(wrapper);
     wrapper.classList.add('nav__menu--open');
   };
 
   const hideMenu = () => {
     setShowMenuState(false);
     const wrapper = navMenuRef.current;
-    console.log(wrapper);
     wrapper.classList.remove('nav__menu--open');
   };
   return (
@@ -36,6 +34,7 @@ const Nav = () => {
         </Link>
         <div className='nav__search'>
           <input
+            id='searchInput'
             className='nav__search__input'
             type='text'
             onChange={(event) => {
@@ -45,8 +44,18 @@ const Nav = () => {
             name='search'
             aria-label='navigation search input'
           />
+          <label className='nav__search__label' htmlFor='searchInput'>
+            search hero
+          </label>
           <Link style={{ textDecoration: 'none' }} to={`/search/${searchInputValue}`}>
-            <button className='nav__search__button'>search</button>
+            <button
+              className='nav__search__button'
+              onClick={() => {
+                setSearchInputValue('');
+              }}
+            >
+              search
+            </button>
           </Link>
         </div>
         {!showMenuState && (

@@ -12,3 +12,5 @@ export const close_dark = require('./close_dark.svg');
 export const close_white = require('./close_white.svg');
 export const menu_white = require('./menu_white.svg');
 export const menu_dark = require('./menu_dark.svg');
+export const addIcon = require('./addIcon.svg');
+export const deleteIcon = require('./deleteIcon.svg');

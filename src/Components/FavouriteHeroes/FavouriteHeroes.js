@@ -13,6 +13,10 @@ const FavouriteHeroes = () => {
   useEffect(() => {
     setLoadingState(true);
     fetchAndRenderFavouriteHeroes();
+
+    return () => {
+      setFavouriteHeroesList([]);
+    };
   }, []);
 
   const fetchAndRenderFavouriteHeroes = async () => {
@@ -26,11 +30,14 @@ const FavouriteHeroes = () => {
   };
 
   return (
-    <section className='container'>
-      {!isLoading &&
-        FavouriteHeroesList.map(({ name, powerstats, imgUrl, id }) => (
-          <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
-        ))}
+    <section className='favourite'>
+      <h1 className='favourite__title'>Your favourite heroes</h1>
+      <div className='favourite__content'>
+        {!isLoading &&
+          FavouriteHeroesList.map(({ name, powerstats, imgUrl, id }) => (
+            <HeroCard key={id} name={name} imgUrl={imgUrl} powerstats={powerstats} id={id} />
+          ))}
+      </div>
 
       {isLoading && <Loader />}
     </section>

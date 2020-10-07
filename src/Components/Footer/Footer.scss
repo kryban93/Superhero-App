@@ -1,11 +1,13 @@
 @import '../../variables.scss';
 
 .footer {
+  margin-top: 70px;
   height: 70px;
   width: 100%;
   background-color: $secondary;
 
   &__content {
     padding: 20px;
+    color: $tertiary;
   }
 }

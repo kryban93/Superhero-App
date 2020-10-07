@@ -4,23 +4,35 @@ import { getDetailedInfoById } from '../../requests';
 import { searchHeroByName } from '../../requests';
 import ListItem from '../ListItem/ListItem';
 import CompareCard from '../CompareCard/CompareCard';
+import superHeroesImage from '../../assets/images/superheroes.png';
+
+const powerstatsInitialVal = {
+  combat: '0',
+  durability: '0',
+  intelligence: '0',
+  power: '0',
+  speed: '0',
+  strength: '0',
+};
 
 const CompareHeroes = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [searchHeroList, setSearchHeroList] = useState([]);
   const [compareHeroList, setCompareHeroList] = useState([]);
   const [compareHeroesArray, setCompareHeroesArray] = useState([]);
+  const [wrongSearchInput, setWrongSearchInputState] = useState(false);
+  const [powerstatsMaxState, setPowerstatsMaxState] = useState(powerstatsInitialVal);
 
   const displaySearchHeroList = () => {
-    console.log(searchInputValue);
     searchHeroByName(searchInputValue).then((searchResults) => {
       const { data } = searchResults;
 
       if (data.error) {
+        setWrongSearchInputState(true);
         return;
       }
       const { results } = data;
-      console.log(results);
+
       let heroNamesList = [];
       heroNamesList = results.map(({ name, biography, id, image }) => {
         const hero = {
@@ -31,8 +43,8 @@ const CompareHeroes = () => {
         };
         return hero;
       });
-      console.log(heroNamesList);
       setSearchHeroList(heroNamesList);
+      setWrongSearchInputState(false);
     });
   };
   const handleOnClick = () => {
@@ -41,7 +53,13 @@ const CompareHeroes = () => {
 
   const addToCompareList = (e) => {
     const heroId = e.target.dataset['id'];
-    console.log(e.target.dataset['id']);
+
+    for (let hero of compareHeroList) {
+      if (hero.heroId === heroId) {
+        return;
+      }
+    }
+
     let hero = {};
     for (let i = 0; i < searchHeroList.length; i++) {
       if (searchHeroList[i].heroId === heroId) {
@@ -53,7 +71,7 @@ const CompareHeroes = () => {
         };
       }
     }
-    console.log(hero);
+
     const newList = compareHeroList.concat(hero);
     setCompareHeroList(newList);
   };
@@ -70,9 +88,8 @@ const CompareHeroes = () => {
       return heroId;
     });
 
-    console.log(heroesIdList);
     const heroes = [];
-    for (const heroId of heroesIdList) {
+    for (let heroId of heroesIdList) {
       const hero = await getDetailedInfoById(heroId);
       heroes.push(hero);
     }
@@ -87,32 +104,56 @@ const CompareHeroes = () => {
       };
       return hero;
     });
-    console.log(heroes);
-    console.log(heroesSorted);
+    let powerstatsMaxValues = powerstatsMaxState;
+    console.log(heroes.sorted);
+    console.log(powerstatsMaxValues);
+    for (let hero of heroesSorted) {
+      Object.keys(hero.powerstats).forEach((keyName) => {
+        if (parseInt(hero.powerstats[keyName]) > parseInt(powerstatsMaxValues[keyName])) {
+          powerstatsMaxValues[keyName] = hero.powerstats[keyName];
+        }
+      });
+    }
+    console.log(powerstatsMaxValues);
+
+    setPowerstatsMaxState(powerstatsMaxValues);
     setCompareHeroesArray(heroesSorted);
   };
 
   return (
     <section className='compare'>
-      <div className='compare__search'>
-        <input
-          type='text'
-          className='compare__search__input'
-          placeholder='What hero You want to compare?'
-          onChange={(event) => {
-            setSearchInputValue(event.target.value);
-          }}
-          value={searchInputValue}
-          aria-label='compare heroes search input'
-        />
-        <button className='compare__search__btn' onClick={() => handleOnClick()}>
-          search
-        </button>
-      </div>
+      <div className='compare__header'>
+        <h1 className='compare__title'>What heroes You want to compare?</h1>
 
-      <div className='compare__lists__wrapper'>
-        <div className='compare__lists'>
-          <ul className='compare__lists__search'>
+        <div className='compare__search'>
+          <input
+            id='compareSearchInput'
+            type='text'
+            className='compare__search__input'
+            placeholder='write hero name'
+            onChange={(event) => {
+              setSearchInputValue(event.target.value);
+            }}
+            value={searchInputValue}
+            aria-label='compare heroes search input'
+          />
+          <label className='compare__search__label' htmlFor='compareSearchInput'>
+            write hero name
+          </label>
+          <button className='compare__search__btn' onClick={() => handleOnClick()}>
+            search
+          </button>
+        </div>
+      </div>
+      {wrongSearchInput && (
+        <div className='compare__wrong'>
+          <h1 className='compare__wrong__title'>There's no results for such phrase!</h1>
+          <img className='compare__wrong__image' src={superHeroesImage} alt='Teen Titans' />
+        </div>
+      )}
+      <div className='compare__lists'>
+        <div className='compare__lists__search'>
+          <ul className='compare__lists__search__list'>
             {searchHeroList.map(({ heroId, heroName, heroFullName, imageUrl }) => (
               <ListItem
                 key={heroId}
@@ -124,7 +165,9 @@ const CompareHeroes = () => {
               />
             ))}
           </ul>
-          <ul className='compare__lists__compareList'>
+        </div>
+        <div className='compare__lists__compare'>
+          <ul className='compare__lists__compare__list'>
             {compareHeroList.map(({ heroId, heroName, heroFullName, imageUrl }) => (
               <ListItem
                 key={heroId}
@@ -137,12 +180,13 @@ const CompareHeroes = () => {
             ))}
           </ul>
         </div>
-        <button onClick={compareHeroes} className='compare__lists__btn'>
+      </div>
+      <div className='compare__content'>
+        <button onClick={compareHeroes} className='compare__content__btn'>
           compare!
         </button>
+        <CompareCard compareHeroesArray={compareHeroesArray} powerstatsMaxValues={powerstatsMaxState} />
       </div>
-
-      <CompareCard compareHeroesArray={compareHeroesArray} />
     </section>
   );
 };
