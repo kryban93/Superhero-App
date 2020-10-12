@@ -4,8 +4,6 @@ import { getBasicHeroInfoById } from '../../requests';
 import HeroCard from '../HeroCard/HeroCard';
 import Loader from '../Loader/Loader';
 
-const FavouriteHeroesNumber = [60, 370, 204];
-
 const FavouriteHeroes = () => {
   const [FavouriteHeroesList, setFavouriteHeroesList] = useState([]);
   const [isLoading, setLoadingState] = useState([]);
@@ -20,8 +18,10 @@ const FavouriteHeroes = () => {
   }, []);
 
   const fetchAndRenderFavouriteHeroes = async () => {
+    let favouriteHeroesNumber = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
+    console.log(favouriteHeroesNumber);
     const heroes = [];
-    for (const heroId of FavouriteHeroesNumber) {
+    for (const heroId of favouriteHeroesNumber) {
       const hero = await getBasicHeroInfoById(heroId);
       heroes.push(hero);
     }

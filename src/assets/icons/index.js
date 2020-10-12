@@ -14,3 +14,5 @@ export const menu_white = require('./menu_white.svg');
 export const menu_dark = require('./menu_dark.svg');
 export const addIcon = require('./addIcon.svg');
 export const deleteIcon = require('./deleteIcon.svg');
+export const star_green = require('./star_green.svg');
+export const star_red = require('./star_red.svg');

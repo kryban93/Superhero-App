@@ -85,6 +85,7 @@
       padding: 10px;
       margin-top: 20px;
       transition: all 0.2s ease-in;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.1);
@@ -152,10 +153,21 @@
       color: $tertiary;
       padding: 10px;
       transition: all 0.2s ease-in;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.2);
         background-color: $active;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .compare {
+    &__wrong {
+      &__image {
+        width: 20%;
       }
     }
   }

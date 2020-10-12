@@ -43,5 +43,11 @@
       flex-wrap: wrap;
       flex-direction: row;
     }
+
+    &__wrong {
+      &__image {
+        width: 30%;
+      }
+    }
   }
 }

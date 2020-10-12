@@ -72,6 +72,7 @@
       color: $tertiary;
       font-size: $fontXs;
       transition: all 0.2s ease-in;
+      cursor: pointer;
 
       &:hover {
         background-color: $active;
@@ -125,6 +126,7 @@
       background-color: $additional;
       border: none;
       margin: 5px;
+      cursor: pointer;
 
       &--open {
         z-index: 3;
@@ -152,6 +154,7 @@
 
     &__search {
       flex-direction: row;
+      margin: initial;
 
       &__label {
         top: 26px;

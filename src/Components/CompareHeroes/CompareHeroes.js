@@ -24,6 +24,7 @@ const CompareHeroes = () => {
   const [powerstatsMaxState, setPowerstatsMaxState] = useState(powerstatsInitialVal);
 
   const displaySearchHeroList = () => {
+    setPowerstatsMaxState(powerstatsInitialVal);
     searchHeroByName(searchInputValue).then((searchResults) => {
       const { data } = searchResults;
 
@@ -33,15 +34,13 @@ const CompareHeroes = () => {
       }
       const { results } = data;
 
-      let heroNamesList = [];
-      heroNamesList = results.map(({ name, biography, id, image }) => {
-        const hero = {
+      let heroNamesList = results.map(({ name, biography, id, image }) => {
+        return {
           heroName: name,
           heroFullName: biography['full-name'],
           heroId: id,
           imageUrl: image.url,
         };
-        return hero;
       });
       setSearchHeroList(heroNamesList);
       setWrongSearchInputState(false);
@@ -49,6 +48,7 @@ const CompareHeroes = () => {
   };
   const handleOnClick = () => {
     displaySearchHeroList();
+    setPowerstatsMaxState(powerstatsInitialVal);
   };
 
   const addToCompareList = (e) => {
@@ -84,6 +84,7 @@ const CompareHeroes = () => {
   };
 
   const compareHeroes = async () => {
+    setPowerstatsMaxState(powerstatsInitialVal);
     const heroesIdList = compareHeroList.map(({ heroId }) => {
       return heroId;
     });
@@ -94,7 +95,7 @@ const CompareHeroes = () => {
       heroes.push(hero);
     }
     const heroesSorted = heroes.map(({ data }) => {
-      const hero = {
+      return {
         heroName: data.name,
         heroId: data.id,
         powerstats: data.powerstats,
@@ -102,11 +103,9 @@ const CompareHeroes = () => {
         biography: data.biography,
         appearance: data.appearance,
       };
-      return hero;
     });
     let powerstatsMaxValues = powerstatsMaxState;
-    console.log(heroes.sorted);
-    console.log(powerstatsMaxValues);
+
     for (let hero of heroesSorted) {
       Object.keys(hero.powerstats).forEach((keyName) => {
         if (parseInt(hero.powerstats[keyName]) > parseInt(powerstatsMaxValues[keyName])) {

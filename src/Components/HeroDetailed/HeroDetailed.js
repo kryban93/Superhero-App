@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './HeroDetailed.scss';
 import { getDetailedInfoById } from '../../requests';
 import Loader from '../Loader/Loader';
-import { close_dark, star_dark } from '../../assets/icons/index';
+import { close_dark, star_green, star_red } from '../../assets/icons/index';
 
-const HeroDetailed = ({ id, hideModal, addToFavourite }) => {
+const HeroDetailed = ({ id, hideModal, addToFavourite, deleteFromFavourite, isFavourite }) => {
   const [detailedHeroInfo, setDetailedHeroInfo] = useState([]);
   const [isLoading, setLoadingState] = useState(true);
 
@@ -27,12 +27,19 @@ const HeroDetailed = ({ id, hideModal, addToFavourite }) => {
     <section className='wrapper'>
       {!isLoading && (
         <div className='detailed'>
-          <button onClick={hideModal} className='detailed__button detailed__button--close'>
+          <button onClick={hideModal} className='detailed__btn detailed__btn--close'>
             <img src={close_dark} alt='close button' />
           </button>
-          <button onClick={addToFavourite} className='detailed__button detailed__button--favourite'>
-            <img src={star_dark} alt='add to favourite' />
-          </button>
+          {!isFavourite && (
+            <button className='detailed__btn detailed__btn--favourite' onClick={addToFavourite}>
+              <img src={star_green} className='card__btn__img' alt='add to favourite button' />
+            </button>
+          )}
+          {isFavourite && (
+            <button className='detailed__btn detailed__btn--favourite' onClick={deleteFromFavourite}>
+              <img src={star_red} className='card__btn__img' alt='add to favourite button' />
+            </button>
+          )}
           <img src={detailedHeroInfo.image.url} alt={`${detailedHeroInfo.name} portrait`} className='detailed__image' />
           <div className='detailed__description'>
             <h2 className='detailed__name'> {detailedHeroInfo.name}</h2>

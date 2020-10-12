@@ -12,9 +12,9 @@ const randomInteger = () => {
 };
 
 const randomizeHeroes = () => {
-  for (let i = 0; i <= 4; i++) {
+  while (randomHeroesNumbers.length < 5) {
     const heroId = randomInteger();
-    randomHeroesNumbers.push(heroId);
+    if (randomHeroesNumbers.indexOf(heroId) === -1) randomHeroesNumbers.push(heroId);
   }
 };
 
@@ -37,6 +37,7 @@ const RandomDeck = () => {
     const heroes = [];
     for (const heroId of randomHeroesNumbers) {
       const hero = await getBasicHeroInfoById(heroId);
+
       heroes.push(hero);
     }
 
