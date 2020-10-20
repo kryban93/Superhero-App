@@ -184,7 +184,10 @@ const CompareHeroes = () => {
         <button onClick={compareHeroes} className='compare__content__btn'>
           compare!
         </button>
-        <CompareCard compareHeroesArray={compareHeroesArray} powerstatsMaxValues={powerstatsMaxState} />
+        <CompareCard
+          compareHeroesArray={compareHeroesArray}
+          powerstatsMaxValues={powerstatsMaxState}
+        />
       </div>
     </section>
   );

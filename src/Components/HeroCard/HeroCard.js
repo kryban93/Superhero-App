@@ -8,7 +8,7 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
   const [isFavourite, setFavouriteState] = useState(false);
 
   useEffect(() => {
-    let favouriteHeroesIdsArray = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray'));
+    let favouriteHeroesIdsArray = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
     favouriteHeroesIdsArray.indexOf(id) !== -1 ? setFavouriteState(true) : setFavouriteState(false);
   }, [id]);
 
@@ -40,7 +40,10 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
     localStorage.removeItem('favouriteHeroesIdsArray');
 
     const filteredFavouriteHeroesIdsArray = favouriteHeroesIdsArray.filter((item) => item !== id);
-    localStorage.setItem('favouriteHeroesIdsArray', JSON.stringify(filteredFavouriteHeroesIdsArray));
+    localStorage.setItem(
+      'favouriteHeroesIdsArray',
+      JSON.stringify(filteredFavouriteHeroesIdsArray)
+    );
     setFavouriteState(false);
   };
 
