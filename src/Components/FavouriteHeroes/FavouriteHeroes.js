@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './FavouriteHeroes.scss';
 import { getBasicHeroInfoById } from '../../requests';
 import HeroCard from '../HeroCard/HeroCard';
 import Loader from '../Loader/Loader';
+import { FavouriteHeroesContext } from '../FavouriteHeroesContext/FavouriteHeroesContext';
 
 const FavouriteHeroes = () => {
   const [FavouriteHeroesList, setFavouriteHeroesList] = useState([]);
   const [isLoading, setLoadingState] = useState([]);
+  const [favouriteHeroesIds, setFavouriteHeroesIds] = useContext(FavouriteHeroesContext);
 
   useEffect(() => {
     setLoadingState(true);
-    fetchAndRenderFavouriteHeroes();
 
+    const fetchAndRenderFavouriteHeroes = async () => {
+      const heroes = [];
+      for (const heroId of favouriteHeroesIds) {
+        const hero = await getBasicHeroInfoById(heroId);
+        heroes.push(hero);
+      }
+      setFavouriteHeroesList(heroes);
+      setLoadingState(false);
+    };
+
+    fetchAndRenderFavouriteHeroes();
     return () => {
       setFavouriteHeroesList([]);
     };
-  }, []);
-
-  const fetchAndRenderFavouriteHeroes = async () => {
-    let favouriteHeroesNumber = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
-    console.log(favouriteHeroesNumber);
-    const heroes = [];
-    for (const heroId of favouriteHeroesNumber) {
-      const hero = await getBasicHeroInfoById(heroId);
-      heroes.push(hero);
-    }
-    setFavouriteHeroesList(heroes);
-    setLoadingState(false);
-  };
+  }, [favouriteHeroesIds]);
 
   return (
     <section className='favourite'>

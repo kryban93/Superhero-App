@@ -11,29 +11,30 @@
 }
 
 .detailed {
-  position: fixed;
+  position: relative;
   display: flex;
+  flex-direction: column;
   background: $tertiary;
-  width: 80%;
+  width: 100%;
   height: auto;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: 20px;
+  max-height: 100%;
+  overflow: auto;
   padding: 20px;
 
   &__btn {
     position: absolute;
-    top: 3%;
+    right: 15%;
     background: none;
     border: none;
     padding: 5px;
 
     &--close {
-      right: 2%;
+      top: 15%;
     }
 
     &--favourite {
-      right: 8%;
+      top: 25%;
     }
 
     & > img {
@@ -42,8 +43,8 @@
   }
 
   &__image {
-    width: 300px;
-    height: 400px;
+    width: 200px;
+    height: 250px;
   }
 
   &__name {
@@ -82,6 +83,55 @@
           font-size: $fontXs;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .detailed {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    background: $tertiary;
+    width: 80%;
+    height: auto;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    &__btn {
+      position: absolute;
+      top: 3%;
+      background: none;
+      border: none;
+      padding: 5px;
+
+      &--close {
+        right: 2%;
+      }
+
+      &--favourite {
+        right: 8%;
+      }
+
+      & > img {
+        height: 40px;
+      }
+    }
+
+    &__image {
+      width: 300px;
+      height: 400px;
     }
   }
 }

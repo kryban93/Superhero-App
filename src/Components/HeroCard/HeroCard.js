@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './HeroCard.scss';
 import HeroDetailed from '../HeroDetailed/HeroDetailed';
+import { FavouriteHeroesContext } from '../FavouriteHeroesContext/FavouriteHeroesContext';
 import { star_green, star_red } from '../../assets/icons/index';
 
 const HeroCard = ({ powerstats, name, imgUrl, id }) => {
   const [isModalActive, setModalState] = useState(false);
   const [isFavourite, setFavouriteState] = useState(false);
+  const [favouriteHeroesIds, setFavouriteHeroesIds] = useContext(FavouriteHeroesContext);
 
   useEffect(() => {
-    let favouriteHeroesIdsArray = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
-    favouriteHeroesIdsArray.indexOf(id) !== -1 ? setFavouriteState(true) : setFavouriteState(false);
-  }, [id]);
+    favouriteHeroesIds.indexOf(id) !== -1 ? setFavouriteState(true) : setFavouriteState(false);
+  }, [id, favouriteHeroesIds]);
 
   const hideModal = (e) => {
     e.stopPropagation();
@@ -20,7 +21,7 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
   const addToFavourite = (e) => {
     e.stopPropagation();
 
-    let favouriteHeroesIdsArray = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
+    let favouriteHeroesIdsArray = favouriteHeroesIds.concat();
 
     if (favouriteHeroesIdsArray.indexOf(id) !== -1) {
       return;
@@ -28,22 +29,18 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
       favouriteHeroesIdsArray.push(id);
     }
 
-    localStorage.setItem('favouriteHeroesIdsArray', JSON.stringify(favouriteHeroesIdsArray));
+    setFavouriteHeroesIds(favouriteHeroesIdsArray);
     setFavouriteState(true);
   };
 
   const deleteFromFavourite = (e) => {
     e.stopPropagation();
 
-    let favouriteHeroesIdsArray = JSON.parse(localStorage.getItem('favouriteHeroesIdsArray')) || [];
-
-    localStorage.removeItem('favouriteHeroesIdsArray');
+    let favouriteHeroesIdsArray = favouriteHeroesIds || [];
 
     const filteredFavouriteHeroesIdsArray = favouriteHeroesIdsArray.filter((item) => item !== id);
-    localStorage.setItem(
-      'favouriteHeroesIdsArray',
-      JSON.stringify(filteredFavouriteHeroesIdsArray)
-    );
+    setFavouriteHeroesIds(filteredFavouriteHeroesIdsArray);
+
     setFavouriteState(false);
   };
 
@@ -76,8 +73,8 @@ const HeroCard = ({ powerstats, name, imgUrl, id }) => {
             <p>{powerstats['speed']}</p>
           </div>
           <div className='card__stats__item' key='durabillity'>
-            <span className='card__stats__item__description'>durabillity</span>
-            <p>{powerstats['durabillity']}</p>
+            <span className='card__stats__item__description'>durability</span>
+            <p>{powerstats['durability']}</p>
           </div>
           <div className='card__stats__item' key='power'>
             <span className='card__stats__item__description'>power</span>
