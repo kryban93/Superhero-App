@@ -32,6 +32,9 @@ const FavouriteHeroes = () => {
   return (
     <section className='favourite'>
       <h1 className='favourite__title'>Your favourite heroes</h1>
+      <button className='favourite__btn' onClick={() => setFavouriteHeroesIds([])}>
+        clear list
+      </button>
       <div className='favourite__content'>
         {!isLoading &&
           FavouriteHeroesList.map(({ name, powerstats, imgUrl, id }) => (

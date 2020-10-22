@@ -36,11 +36,18 @@ const HeroDetailed = ({ id, hideModal, addToFavourite, deleteFromFavourite, isFa
             </button>
           )}
           {isFavourite && (
-            <button className='detailed__btn detailed__btn--favourite' onClick={deleteFromFavourite}>
+            <button
+              className='detailed__btn detailed__btn--favourite'
+              onClick={deleteFromFavourite}
+            >
               <img src={star_red} className='card__btn__img' alt='add to favourite button' />
             </button>
           )}
-          <img src={detailedHeroInfo.image.url} alt={`${detailedHeroInfo.name} portrait`} className='detailed__image' />
+          <img
+            src={detailedHeroInfo.image.url}
+            alt={`${detailedHeroInfo.name} portrait`}
+            className='detailed__image'
+          />
           <div className='detailed__description'>
             <h2 className='detailed__name'> {detailedHeroInfo.name}</h2>
             <div className='detailed__stats'>
@@ -50,7 +57,9 @@ const HeroDetailed = ({ id, hideModal, addToFavourite, deleteFromFavourite, isFa
                   {Object.keys(detailedHeroInfo.powerstats).map((keyName) => (
                     <div key={keyName} className='detailed__group__list__item'>
                       <h4 className='detailed__group__list__item__name'>{keyName}</h4>
-                      <p className='detailed__group__list__item__value'>{detailedHeroInfo.powerstats[keyName]}</p>
+                      <p className='detailed__group__list__item__value'>
+                        {detailedHeroInfo.powerstats[keyName]}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -58,22 +67,44 @@ const HeroDetailed = ({ id, hideModal, addToFavourite, deleteFromFavourite, isFa
               <div className='detailed__group'>
                 <h3 className='detailed__group__name'>Appearance</h3>
                 <div className='detailed__group__list--grid'>
-                  {Object.keys(detailedHeroInfo.appearance).map((keyName) => (
-                    <div key={keyName} className='detailed__group__list__item'>
-                      <h4 className='detailed__group__list__item__name'>{keyName}</h4>
-                      <p className='detailed__group__list__item__value'>{detailedHeroInfo.appearance[keyName]}</p>
-                    </div>
-                  ))}
+                  {Object.keys(detailedHeroInfo.appearance).map((keyName) =>
+                    keyName === 'weight' ? (
+                      <div key={keyName} className='detailed__group__list__item'>
+                        <h4 className='detailed__group__list__item__name'>{keyName}</h4>
+                        <p className='detailed__group__list__item__value'>
+                          {detailedHeroInfo.appearance[keyName][1]}
+                        </p>
+                      </div>
+                    ) : (
+                      <div key={keyName} className='detailed__group__list__item'>
+                        <h4 className='detailed__group__list__item__name'>{keyName}</h4>
+                        <p className='detailed__group__list__item__value'>
+                          {detailedHeroInfo.appearance[keyName]}
+                        </p>
+                      </div>
+                    )
+                  )}
                 </div>
 
                 <div className='detailed__group'>
                   <h3 className='detailed__group__name'>Biography</h3>
-                  {Object.keys(detailedHeroInfo.biography).map((keyName) => (
-                    <div key={keyName} className='detailed__group__list__item'>
-                      <h4 className='detailed__group__list__item__name'>{keyName}</h4>
-                      <p className='detailed__group__list__item__value'>{detailedHeroInfo.biography[keyName]}</p>
-                    </div>
-                  ))}
+                  {Object.keys(detailedHeroInfo.biography).map((keyName) =>
+                    keyName === 'aliases' ? (
+                      <div key={keyName} className='detailed__group__list__item'>
+                        <h4 className='detailed__group__list__item__name'>{keyName}</h4>
+                        <p className='detailed__group__list__item__value'>
+                          {detailedHeroInfo.biography[keyName].map((item) => `${item}, `)}
+                        </p>
+                      </div>
+                    ) : (
+                      <div key={keyName} className='detailed__group__list__item'>
+                        <h4 className='detailed__group__list__item__name'>{keyName}</h4>
+                        <p className='detailed__group__list__item__value'>
+                          {detailedHeroInfo.biography[keyName]}
+                        </p>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             </div>

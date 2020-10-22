@@ -6,12 +6,12 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  color: $tertiary;
 
   &__title {
     padding: 30px;
     font-size: $fontXl;
     text-align: center;
+    color: $tertiary;
   }
 
   &__content {

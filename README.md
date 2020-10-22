@@ -9,6 +9,7 @@ Find and compare your favourite heroes from all universes.
 - axios
 - Sass
 - React Router
+- ContextAPI
 
 ## Setup
 
